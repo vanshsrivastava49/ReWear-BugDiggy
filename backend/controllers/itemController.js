@@ -10,3 +10,11 @@ export const getMyPurchases = async (req, res) => {
   const items = await Item.find({ status: "redeemed" });
   res.json(items);
 };
+export const getAllApprovedItems = async (req, res) => {
+  try {
+    const items = await Item.find({ approved: true });
+    res.json(items);
+  } catch (err) {
+    res.status(500).json({ message: "Failed to fetch items" });
+  }
+};
